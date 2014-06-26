@@ -43,7 +43,7 @@
                         <td>{{$index}}</td>
                         <td>{{cur_customer.id}}</td>
                         <td>{{cur_customer.name}}</td>
-                        <td>{{cur_customer.total}}</td>
+                        <td>{{cur_customer.total | currency}}</td>
                     </tr>
                     </tbody>
                 </table>
@@ -61,12 +61,12 @@
     var app = angular.module('customerApp', [])
     app.controller('customerController', function ($scope) {
         $scope.customers = [
-            {"id": 1, "name": "WaZzi", "total": 120},
-            {"id": 2, "name": "Rakin", "total": 110},
-            {"id": 3, "name": "Ridwan", "total": 100},
-            {"id": 4, "name": "Tarif", "total": 90},
-            {"id": 5, "name": "Syrus", "total": 80},
-            {"id": 6, "name": "Faiyaz", "total": 70}
+            {"id": 1, "name": "WaZzi", "total": 120.12},
+            {"id": 2, "name": "Rakin", "total": 110.54},
+            {"id": 3, "name": "Ridwan", "total": 100.01212},
+            {"id": 4, "name": "Tarif", "total": 90.12313},
+            {"id": 5, "name": "Syrus", "total": 80.11},
+            {"id": 6, "name": "Faiyaz", "total": 70.1231}
         ]
     })
 </script>
