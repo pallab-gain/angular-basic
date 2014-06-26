@@ -10,7 +10,11 @@
 
 <div class="container">
     <strong>Search: </strong>
-    <input type="text" name="name" id="inputID" class="form-control" value="" title="" required="required">
+    <input ng-model="inputText" type="text" name="name" id="inputID" class="form-control" value="" title=""
+           required="required">
+    <br/>
+    <strong>You Wrote: </strong>
+    {{inputText}}
 </div>
 
 <script src="bower_components/jquery/dist/jquery.js"></script>
