@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Customer</title>
+</head>
+<body>
+<div class="container">
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+            <strong>Search: </strong>
+            <input ng-model="inputText" type="text" name="name" id="inputID" class="form-control" value="" title=""
+                   required="required">
+            <br/>
+            <strong>You Wrote: </strong>
+            {{inputText}}
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <br/>
+        <br/>
+
+        <div class="row">
+            <strong>Customer Table </strong>
+
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Serial</th>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Total</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="cur_customer in customers | filter:inputText  track by $index">
+                        <td>{{$index}}</td>
+                        <td><a href="/AngularJS-Test1/index.html#/orders/{{cur_customer}}">{{cur_customer.id}}</a>
+                        </td>
+                        <td>{{cur_customer.name}}</td>
+                        <td>{{cur_customer.total | currency}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -8,49 +8,8 @@
 <body>
 <h1> Angular JS </h1>
 
-<div class="container" ng-controller="customerController">
+<div ng-view>
 
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <div class="row">
-            <strong>Search: </strong>
-            <input ng-model="inputText" type="text" name="name" id="inputID" class="form-control" value="" title=""
-                   required="required">
-            <br/>
-            <strong>You Wrote: </strong>
-            {{inputText}}
-        </div>
-    </div>
-
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <br/>
-        <br/>
-
-        <div class="row">
-            <strong>Customer Table </strong>
-
-            <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead>
-                    <tr>
-                        <th>Serial</th>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Total</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr ng-repeat="cur_customer in customers | filter:inputText  track by $index">
-                        <td>{{$index}}</td>
-                        <td>{{cur_customer.id}}</td>
-                        <td>{{cur_customer.name}}</td>
-                        <td>{{cur_customer.total | currency}}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-
-        </div>
-    </div>
 </div>
 
 <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -59,8 +18,23 @@
 <script src="bower_components/angular-route/angular-route.js"></script>
 
 <script>
-    var app = angular.module('customerApp', ['ngRoute'])
-    app.controller('customerController', function ($scope) {
+    var app = angular.module('customerApp', ['ngRoute']);
+    app.config(function ($routeProvider) {
+        $routeProvider
+                .when('/', {
+                    controller: 'CustomersController',
+                    templateUrl: 'views/customers.html',
+                })
+                .when('/orders/:curCustomer', {
+                    controller: 'OrdersController',
+                    templateUrl: 'views/orders.html'
+                })
+                .otherwise({
+                    redirectTo: '/'
+                });
+    });
+
+    app.controller('CustomersController', function ($scope) {
         $scope.customers = [
             {"id": 1, "name": "WaZzi", "total": 120.12},
             {"id": 2, "name": "Rakin", "total": 110.545},
@@ -69,7 +43,11 @@
             {"id": 5, "name": "Syrus", "total": 80.11},
             {"id": 6, "name": "Faiyaz", "total": 70.1231}
         ]
-    })
+    });
+    //$ when see dollar scope inject
+    app.controller('OrdersController', function ($scope, $routeParams) {
+        $scope.customers = $routeParams.curCustomer;
+    });
 </script>
 
 </body>
