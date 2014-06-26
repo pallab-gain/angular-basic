@@ -35,7 +35,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="cur_customer in customers track by $index">
+                    <tr ng-repeat="cur_customer in customers | filter:inputText  track by $index">
                         <td>{{$index}}</td>
                         <td>{{cur_customer}}</td>
                     </tr>
