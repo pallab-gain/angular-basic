@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html ng-app>
+<html ng-app="customerApp">
 <head lang="en">
     <meta charset="UTF-8">
     <title>Angular JS</title>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
 </head>
-<body ng-init="customers=['x','y','z','p','q','r']">
+<body>
 <h1> Angular JS </h1>
 
-<div class="container">
+<div class="container" ng-controller="customerController">
+
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
             <strong>Search: </strong>
@@ -23,6 +24,7 @@
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <br/>
         <br/>
+
         <div class="row">
             <strong>Customer Table </strong>
 
@@ -31,13 +33,17 @@
                     <thead>
                     <tr>
                         <th>Serial</th>
+                        <th>ID</th>
                         <th>Name</th>
+                        <th>Total</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr ng-repeat="cur_customer in customers | filter:inputText  track by $index">
                         <td>{{$index}}</td>
-                        <td>{{cur_customer}}</td>
+                        <td>{{cur_customer.id}}</td>
+                        <td>{{cur_customer.name}}</td>
+                        <td>{{cur_customer.total}}</td>
                     </tr>
                     </tbody>
                 </table>
@@ -50,6 +56,20 @@
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 <script src="bower_components/angular/angular.js"></script>
+
+<script>
+    var app = angular.module('customerApp', [])
+    app.controller('customerController', function ($scope) {
+        $scope.customers = [
+            {"id": 1, "name": "WaZzi", "total": 120},
+            {"id": 2, "name": "Rakin", "total": 110},
+            {"id": 3, "name": "Ridwan", "total": 100},
+            {"id": 4, "name": "Tarif", "total": 90},
+            {"id": 5, "name": "Syrus", "total": 80},
+            {"id": 6, "name": "Faiyaz", "total": 70}
+        ]
+    })
+</script>
 
 </body>
 </html>
