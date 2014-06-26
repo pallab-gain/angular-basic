@@ -5,16 +5,46 @@
     <title>Angular JS</title>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
 </head>
-<body>
+<body ng-init="customers=['x','y','z','p','q','r']">
 <h1> Angular JS </h1>
 
 <div class="container">
-    <strong>Search: </strong>
-    <input ng-model="inputText" type="text" name="name" id="inputID" class="form-control" value="" title=""
-           required="required">
-    <br/>
-    <strong>You Wrote: </strong>
-    {{inputText}}
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+            <strong>Search: </strong>
+            <input ng-model="inputText" type="text" name="name" id="inputID" class="form-control" value="" title=""
+                   required="required">
+            <br/>
+            <strong>You Wrote: </strong>
+            {{inputText}}
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <br/>
+        <br/>
+        <div class="row">
+            <strong>Customer Table </strong>
+
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Serial</th>
+                        <th>Name</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="cur_customer in customers track by $index">
+                        <td>{{$index}}</td>
+                        <td>{{cur_customer}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
 </div>
 
 <script src="bower_components/jquery/dist/jquery.js"></script>
