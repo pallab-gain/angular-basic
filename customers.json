@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "name": "WaZzi",
+        "total": 120.12
+    },
+    {
+        "id": 2,
+        "name": "Rakin",
+        "total": 110.545
+    },
+    {
+        "id": 3,
+        "name": "Ridwan",
+        "total": 100.01212
+    },
+    {
+        "id": 4,
+        "name": "Tarif",
+        "total": 90.12313
+    },
+    {
+        "id": 5,
+        "name": "Syrus",
+        "total": 80.11
+    },
+    {
+        "id": 6,
+        "name": "Faiyaz",
+        "total": 70.1231
+    }
+]

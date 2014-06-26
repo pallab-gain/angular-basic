@@ -6,10 +6,20 @@
 </head>
 <body>
 <div class="container">
-	<pre>
-        {{customers}}
-	</pre>
-    <a href="/AngularJS-Test1/"> Customer Link </a>
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <h2>Selected Customer: </h2>
+        <pre>
+            <strong>ID: {{customers.id}} </strong>
+            <strong>Name: {{customers.name}} </strong>
+            <strong>Total: {{customers.total | currency}}</strong>
+        </pre>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <br/><br/>
+        <a href="/AngularJS-Test1/"> Customer Link </a>
+    </div>
+
 </div>
 
 </body>

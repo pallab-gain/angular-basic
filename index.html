@@ -23,9 +23,9 @@
         $routeProvider
                 .when('/', {
                     controller: 'CustomersController',
-                    templateUrl: 'views/customers.html',
+                    templateUrl: 'views/customers.html'
                 })
-                .when('/orders/:curCustomer', {
+                .when('/orders/:customer_id', {
                     controller: 'OrdersController',
                     templateUrl: 'views/orders.html'
                 })
@@ -34,20 +34,44 @@
                 });
     });
 
-    app.controller('CustomersController', function ($scope) {
-        $scope.customers = [
-            {"id": 1, "name": "WaZzi", "total": 120.12},
-            {"id": 2, "name": "Rakin", "total": 110.545},
-            {"id": 3, "name": "Ridwan", "total": 100.01212},
-            {"id": 4, "name": "Tarif", "total": 90.12313},
-            {"id": 5, "name": "Syrus", "total": 80.11},
-            {"id": 6, "name": "Faiyaz", "total": 70.1231}
-        ]
+    app.controller('CustomersController', function ($scope, customersFactory) {
+        customersFactory.fetch_customer().then(function () {
+            $scope.customers = customersFactory.customers;
+        });
     });
     //$ when see dollar scope inject
-    app.controller('OrdersController', function ($scope, $routeParams) {
-        $scope.customers = $routeParams.curCustomer;
+    app.controller('OrdersController', function ($scope, $routeParams, customersFactory) {
+        customersFactory.fetch_customer($routeParams.customer_id).then(function () {
+            $scope.customers = customersFactory.customers;
+        });
     });
+
+    app.factory('customersFactory', function ($http, $q) {
+        var customersFactory = {};
+        customersFactory.fetch_customer = function (customer_id) {
+            var d = $q.defer();
+            if (angular.isUndefined(customer_id))
+                $http.get('customers.json').success(function (data) {
+                    customersFactory.customers = data;
+                    d.resolve();
+                });
+            else {
+                $http.get('customers.json').success(function (data) {
+                    angular.forEach(data, function (item) {
+                        if (item.id == customer_id) {
+                            customersFactory.customers = item;
+                            d.resolve();
+                        }
+                    });
+                    //d.resolve();
+                });
+            }
+            return d.promise;
+        }
+
+        return customersFactory;
+    });
+
 </script>
 
 </body>
