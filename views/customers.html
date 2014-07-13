@@ -37,7 +37,7 @@
                     <tbody>
                     <tr ng-repeat="cur_customer in customers | filter:inputText  track by $index">
                         <td>{{$index}}</td>
-                        <td><a href="/AngularJS-Test1/index.html#/orders/{{cur_customer.id}}">{{cur_customer.id}}</a>
+                        <td><a href="/orders/{{cur_customer.id}}">{{cur_customer.id}}</a>
                         </td>
                         <td>{{cur_customer.name}}</td>
                         <td>{{cur_customer.total | currency}}</td>
